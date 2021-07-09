@@ -1,0 +1,4 @@
+@import 'normalize-scss';
+@include normalize();
+@import '@/assets/style/_mixins.scss';
+@import '@/assets/style/_base.scss';
