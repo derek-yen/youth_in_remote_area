@@ -461,7 +461,7 @@ export default {
   left: 135px;
   @media screen and (min-width: 360px) {
     top: 560px;
-    left: 140px;
+    left: 158px;
   }
   @media screen and (min-width: 768px) {
     top: 865px;
