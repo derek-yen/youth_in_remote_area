@@ -1,44 +1,46 @@
 <template>
   <div class="articles-component-container">
-    <div class="line"></div>
-    <div class="title">青春留鄉</div>
-    <div class="description">
-      透過深度報導，帶你了解台灣有許多青年洄游到各地貢獻外，也在不同領域翻轉地方逆境的故事。
-    </div>
-    <div class="buttons-container">
-      <div class="position">
-        <div class="position-all" @click="handlePositionClick(null)" :class="{ active: positionActive === null}">全</div>
-        <div class="position-north" @click="handlePositionClick('north')" :class="{ active: positionActive === 'north'}">北</div>
-        <div class="position-central" @click="handlePositionClick('central')" :class="{ active: positionActive === 'central'}">中</div>
-        <div class="position-south" @click="handlePositionClick('south')" :class="{ active: positionActive === 'south'}">南</div>
-        <div class="position-east" @click="handlePositionClick('east')" :class="{ active: positionActive === 'east'}">東</div>
+    <div class="articles-component-block">
+      <div class="line"></div>
+      <div class="title">青春留鄉</div>
+      <div class="description">
+        透過深度報導，帶你了解台灣有許多青年洄游到各地貢獻外，也在不同領域翻轉地方逆境的故事。
       </div>
-      <div class="type">
-        <div class="education" @click="handleTypeClick('education')" :class="{ active: typeActive === 'education'}">教育</div>
-        <div class="argiculture" @click="handleTypeClick('argiculture')" :class="{ active: typeActive === 'argiculture'}">友善農業</div>
-        <div class="local" @click="handleTypeClick('local')" :class="{ active: typeActive === 'local'}">地方文化</div>
-        <div class="economy" @click="handleTypeClick('economy')" :class="{ active: typeActive === 'economy'}">循環經濟</div>
-      </div>
-    </div>
-    <div class="articles-container">
-      <div class="article-block-container" v-for="(article, index) in articlesData" :key="index" v-show="articleFilter(article.position, article.type) && checkArticleShow(article.id)">
-        <div class="article-block" v-if="articleFilter(article.position, article.type)">
-          <a :href="article.url"><img :src="article.image"/></a>
-          <div class="article-title">
-            <div>{{ article.title[0] }}</div>
-            <div>{{ article.title[1] }}</div>
-            <div class="article-description">
-              {{ article.description }}
-            </div>
-            <div class="tag">{{ typeTranslate(article.type) }}</div>
-            {{ calculateId(article.id) }}
-          </div>
+      <div class="buttons-container">
+        <div class="position">
+          <div class="position-all" @click="handlePositionClick(null)" :class="{ active: positionActive === null}">全</div>
+          <div class="position-north" @click="handlePositionClick('north')" :class="{ active: positionActive === 'north'}">北</div>
+          <div class="position-central" @click="handlePositionClick('central')" :class="{ active: positionActive === 'central'}">中</div>
+          <div class="position-south" @click="handlePositionClick('south')" :class="{ active: positionActive === 'south'}">南</div>
+          <div class="position-east" @click="handlePositionClick('east')" :class="{ active: positionActive === 'east'}">東</div>
+        </div>
+        <div class="type">
+          <div class="education" @click="handleTypeClick('education')" :class="{ active: typeActive === 'education'}">教育</div>
+          <div class="argiculture" @click="handleTypeClick('argiculture')" :class="{ active: typeActive === 'argiculture'}">友善農業</div>
+          <div class="local" @click="handleTypeClick('local')" :class="{ active: typeActive === 'local'}">地方文化</div>
+          <div class="economy" @click="handleTypeClick('economy')" :class="{ active: typeActive === 'economy'}">循環經濟</div>
         </div>
       </div>
-      <div class="blank"></div>
-      <div class="blank"></div>
+      <div class="articles-container">
+        <div class="article-block-container" v-for="(article, index) in articlesData" :key="index" v-show="articleFilter(article.position, article.type) && checkArticleShow(article.id)">
+          <div class="article-block" v-if="articleFilter(article.position, article.type)">
+            <a :href="article.url"><img :src="article.image"/></a>
+            <div class="article-title">
+              <div>{{ article.title[0] }}</div>
+              <div>{{ article.title[1] }}</div>
+              <div class="article-description">
+                {{ article.description }}
+              </div>
+              <div class="tag">{{ typeTranslate(article.type) }}</div>
+              {{ calculateId(article.id) }}
+            </div>
+          </div>
+        </div>
+        <div class="blank"></div>
+        <div class="blank"></div>
+      </div>
+      <div class="read-more" v-show="articlesNum > showArticlesNum" @click="handleReadMoreClick">閱讀更多</div>
     </div>
-    <div class="read-more" v-show="articlesNum > showArticlesNum" @click="handleReadMoreClick">閱讀更多</div>
   </div>
 </template>
 
@@ -105,11 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blank {
-  @media screen and (min-width: 768px) {
-    width: 320px;
-  }
-}
 .articles-component-container {
   background: #828ab0;
   padding-top: 73px;
@@ -119,6 +116,15 @@ export default {
   }
   @media screen and (min-width: 1280px) {
     padding-bottom: 99px;
+  }
+}
+.articles-component-block {
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
   }
 }
 .line {
@@ -362,6 +368,11 @@ export default {
       background:#eeedfc;
       color: #828ab0;
     }
+  }
+}
+.blank {
+  @media screen and (min-width: 768px) {
+    width: 320px;
   }
 }
 </style>

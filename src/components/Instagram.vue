@@ -1,20 +1,22 @@
 <template>
   <div class="instagram-container">
-    <div class="line"></div>
-    <div class="title">#質青洄游</div>
-    <div class="description">
-      用照片說故事，在地創生也可以很多元。<br>
-      你也在洄游他鄉的路上？邀請你一起分享「在地創生」的故事，在 IG post 加上 #質青洄游，就能讓更多青年與地方被看見。
-    </div>
-    <div class="notice">※帳號請記得設定「公開」</div>
-    <div class="posts-container">
-      <div v-for="(post, index) in posts" :key="index" v-show="index < showPostNum">
-        <div class="post-block">
-          <a :href="post.path"><img :src="post.img"/></a>
+    <div class="instagram-block">
+      <div class="line"></div>
+      <div class="title">#質青洄游</div>
+      <div class="description">
+        用照片說故事，在地創生也可以很多元。<br>
+        你也在洄游他鄉的路上？邀請你一起分享「在地創生」的故事，在 IG post 加上 #質青洄游，就能讓更多青年與地方被看見。
+      </div>
+      <div class="notice">※帳號請記得設定「公開」</div>
+      <div class="posts-container">
+        <div v-for="(post, index) in posts" :key="index" v-show="index < showPostNum">
+          <div class="post-block">
+            <a :href="post.path"><img :src="post.img"/></a>
+          </div>
         </div>
       </div>
+      <div class="read-more" v-show="showPostNum < 24" @click="handleReadMoreClick">閱讀更多</div>
     </div>
-    <div class="read-more" v-show="showPostNum < 24" @click="handleReadMoreClick">閱讀更多</div>
   </div>
 </template>
 
@@ -54,6 +56,15 @@ export default {
   }
   @media screen and (min-width: 1280px) {
     padding-bottom: 113px;
+  }
+}
+.instagram-block {
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
   }
 }
 .line {
